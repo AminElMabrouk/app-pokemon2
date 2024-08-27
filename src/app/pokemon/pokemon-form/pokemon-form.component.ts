@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class PokemonFormComponent implements OnInit {
   //vous devez passer proprieter d'entree pokemon
    @Input() pokemon : Pokemon;
+   isAddForm:boolean;
    types:string[];
 
    constructor(
@@ -21,6 +22,7 @@ export class PokemonFormComponent implements OnInit {
 
    ngOnInit(){
     this.types =this.pokemonService.getPockemonTypeList();
+    this.isAddForm=this.router.url.includes('add');
    }
 
 
@@ -50,15 +52,15 @@ export class PokemonFormComponent implements OnInit {
       return true
     }
 
-
     onSubmit(){
-      console.log('submit form !');
-      this.router.navigate(['/pokemon', this.pokemon.id]);
-    }
-
-    
-    
-
-  
+      if(this.isAddForm){
+        this.pokemonService.addPokemon(this.pokemon)
+        .subscribe((pokemon:Pokemon)=>this.router.navigate(['/pokemon',pokemon.id]))
+      }else{
+      this.pokemonService.updatePokemon(this.pokemon)
+      .subscribe(
+        ()=> this.router.navigate(['/pokemon',this.pokemon.id])
+      );
+    }}
 
 }

@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Pokemon } from '../pokemon';
 import { PokemonService } from '../pokemon.service';
-import { POKEMONS } from '../mock.pockemon';
-
 @Component({
   selector: 'app-detail-pokemon',
   templateUrl: './detail-pokemon.component.html',
@@ -20,7 +18,11 @@ export class DetailPokemonComponent implements OnInit{
     private pokemonService: PokemonService
   ) { }
 
-  
+  deletePokemon(pokemon :Pokemon){
+    this.pokemonService.deletePokemonById(pokemon.id)
+    .subscribe(()=>this.goBack())
+  }
+
 
   ngOnInit() {
     

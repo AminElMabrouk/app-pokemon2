@@ -35,10 +35,11 @@
           </table>
         </div>
         <div class="card-action row ">
-          <a class="waves-effect waves-light btn-large" (click)="goBack()">Retour</a> 
-          &nbsp;             
-          <a class="waves-effect waves-light brown darken-3 btn-large " (click)="goToEditPokemon(pokemon)">Editer</a>
           
+          <a class=" waves-effect waves-light btn-large " (click)="goBack()">Retour</a>      
+          &nbsp;
+          <a class="waves-effect waves-light brown darken-3 btn-large " (click)="goToEditPokemon(pokemon)">Editer</a>
+          <a class="waves-effect waves-light red btn-large right" (click)="deletePokemon(pokemon)">Supprimer</a>
         </div>
       </div>
     </div>
